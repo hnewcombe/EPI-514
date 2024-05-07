@@ -142,7 +142,7 @@ Let's dive directly into some examples. We will use out data after cleaning from
 library(tidyverse)
 library(ggpubr)
 
-brfss <- read_csv("/Users/sojink/Desktop/epi514/individual_assignment/individualhw_post.csv") 
+brfss <- read_csv("/Users/sojink/Documents/GitHub/epi_514_data_viz/data/individualhw_post.csv") 
  # Change directory and filename to your choice
 ```
 

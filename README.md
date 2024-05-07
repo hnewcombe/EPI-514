@@ -2,6 +2,7 @@
 2024 EPI 514 Data Visualization Data/Lecture
 
 Author: Julie Sojin Kim
+
 email: sojink@uw.edu
 
 ## How to use this repo.
