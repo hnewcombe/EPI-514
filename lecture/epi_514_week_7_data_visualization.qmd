@@ -23,18 +23,18 @@ editor: visual
 
 ## Principles of data visualization
 
-Five principles of scientific visualization laid out by Edward Tufte (1983)
-
 ::: incremental
--   Avoid chartjunk
+-   Five principles of scientific visualization laid out by Edward Tufte (1983)
 
--   Maximize data, minimize ink and space
+    -   Avoid chartjunk
 
--   Avoid distortions, minimize lie factors
+    -   Maximize data, minimize ink and space
 
--   Show the data and facilitate comparison
+    -   Avoid distortions, minimize lie factors
 
--   Small multiples or repetitions of basic design
+    -   Show the data and facilitate comparison
+
+    -   Small multiples or repetitions of basic design
 :::
 
 ## Principles of data visualization
@@ -57,6 +57,26 @@ My advice:
     -   While some levels of granularity are important for readers to know, figure should be understandable.
 :::
 
+## Visualization for publication
+
+::: incremental
+-   Format
+    -   4-5 figures and tables: Make sure you reference all figures/tables in the main text.
+    -   It might be something that people only read other than your titles - think about the priorities.
+    -   Most journals want vectorized image (vectorized pdf, svg, eps, adobe illustrator)
+        -   jpeg/jpg, png, etc are sometimes permitted for initial submission, but eventually vectorized image can be required.
+    -   Reviewers comment a lot about image quality, captions, choice of colors and axis labels/scale/titles.
+        -   If image quality is too low, it might appear blurry in your paper.
+        -   Provide details for caption - add details even if you included in your main text.
+        -   Colors - it's not about making it pretty
+            -   Also consider "intuitiveness" of colors.
+        -   Axis labels, scale and titles should be detailed as long as it doesn't hurt your figure
+            -   If using multiple panes in one figure, be consistent with the scales
+    -   Many journals now allow supplementary materials
+        -   Any sensitivity analysis or background analysis (e.g. describing the sample that is not directly related to your main analysis) typically goes into supplementary figures.
+        -   Validation (e.g. comparison to other data sources) also goes into supplementary materials.
+:::
+
 ## Introduction to ggplot2 package
 
 ::: incremental
@@ -72,8 +92,8 @@ My advice:
 :::
 
 ```{r}
-knitr::opts_chunk$set(echo = T, include = T, 
-                      fig.pos = "bottom", fig.align = "center",fig.class="figure-bottom")
+knitr::opts_chunk$set(echo = T, include = T, warning = F,
+                      fig.pos = "bottom", fig.align = "center", fig.class="figure-bottom")
 ```
 
 ## Installing and loading ggplot2
@@ -129,12 +149,12 @@ Arguments that are needed:
 
     -   e.g. `geom_point` for scatter plot, `geom_line` for line plots, `geom_histogram` for historgram
     -   Different geometry components require different argument
-        -   e.g. `geom_ribbon` allows you to plot area - this requires (`xmin` and `xmax` or `ymin` and `ymax`) \`\`
+        -   e.g. `geom_ribbon` allows you to plot area - this requires (`xmin` and `xmax` or `ymin` and `ymax`)
 :::
 
 ## Example - Loading data
 
-Let's dive directly into some examples. We will use out data after cleaning from the individual assignments for this exercise.
+Let's dive directly into some examples. We will use our data after cleaning from the individual assignments for this exercise.
 
 \bigskip
 
@@ -165,7 +185,7 @@ ggplot(data = brfss, aes(x = avedrnk3))+
 ::: panel-tabset
 ### Option 1
 
--   If you put `data` and `mapping` arguments, it will automatically inherit to your geometry layer (`geom_histogram` in this case)
+-   If you put `data` and `mapping` arguments into `ggplot()`, it will automatically inherit to all layers below (`geom_histogram` in this case).
 
 ```{r}
 ggplot(data = brfss, mapping = aes(x = avedrnk3))+
@@ -189,7 +209,11 @@ ggplot()+
 
 ## Plotting - Histogram
 
--   We need to count the number of rectangles to know days between 0 and 20.
+-   It's difficult to read some numbers in the axis because the numbers are too sparse.
+-   We will add more numbers using:
+    -   `scale_x_continuous`: for x-axis labels
+    -   `scale_y_continuous`: for y-axis labels
+    -   argument: `breaks` to specify values for axis breaks
 
 ```{r}
 ggplot()+
@@ -202,13 +226,11 @@ ggplot()+
 
 ## Plotting - Scatter
 
--   Now, we will start looking at relationship between variables.
+-   Now, we will start looking at the relationship between variables.
 
 -   Say we want to look at the relationship between `avedrnk3` and `marijan1`.
 
-::: incremental
 -   Any problems here?
-:::
 
 ```{r, message = F, warning = T}
 ggplot(data = brfss, mapping = aes(x = alcday30, y = marijan1))+
@@ -233,7 +255,7 @@ ggplot(data = brfss, mapping = aes(x = alcday30, y = marijan1))+
 
 ## Plotting - Scatter
 
--   Now you wonder how old are they?
+-   Now you wonder: how old are they?
 
 -   One option to do this could be repeating faceting but also by age.
 
@@ -304,7 +326,7 @@ ggplot(data = brfss, mapping = aes(x = avedrnk3, y = marijan1, shape = age_g))+
 
 ## Plotting - Bars
 
--   Histogram is one type of bar graph that shows frequency of observations
+-   Histogram is one type of bar graph that shows frequency of observations.
 
 -   Bar graph are especially helpful for binary/categorical variables.
 
@@ -335,7 +357,7 @@ ggplot(brfss)+
 ```
 :::
 
-## Data wrangling and visualization
+## Data wrangling to visualization
 
 -   One advantage of `ggplot2` is that it's highly flexible.
 
@@ -357,6 +379,8 @@ brfss%>%
          proportion = num/denom)%>%
   knitr::kable()
 ```
+
+## Data wrangling to visualization
 
 -   Then, we use information from wrangled data for ggplot.
 
@@ -433,6 +457,7 @@ ggplot(brfss)+
 -   Colors on other screens (esp. projectors!!) can look different than your laptop screen:
 
     -   Make sure you have enough contrast between colors so that the audience can still detect the difference even if the color slightly fades out
+
 :::
 
 ## Useful resources

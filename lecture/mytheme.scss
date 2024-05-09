@@ -1,0 +1,25 @@
+/*-- scss:defaults --*/
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
+
+// fonts
+$font-family-sans-serif: "Open Sans", sans-serif !default;
+$presentation-font-size-root: 26px !default;
+$presentation-line-height: 1.5 !default;
+
+// colors
+$body-bg: rgba(250, 235, 215, 0.5)!default;
+$body-color: #000000 !default;
+$link-color: rgba(50, 0, 110, 0.5) !default;
+$selection-bg: #e7ad52 !default;
+$input-panel-bg: rgba(233, 236, 239, 0.2) !default;
+
+// headings
+$presentation-heading-font: "Montserrat", Impact, sans-serif;
+$presentation-heading-letter-spacing: -0.03em;
+$presentation-h1-font-size: 3em;
+
+// code blocks
+$code-block-border-color: rgba(197, 180, 227, 0.5) !default;
+$code-block-font-size: 0.7em;
